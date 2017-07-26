@@ -58,7 +58,26 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  document.onkeydown = checkKey;
 
+  function checkKey(e) {
+    e = e || window.event;
+    var keys = document.querySelectorAll('.key');
+    keys.forEach(function(element) {
+      if(element.dataset.key == e.keyCode) {
+
+        element.classList.toggle("playing");
+        var audios = document.querySelectorAll('audio');
+        audios.forEach(function(aud_el) {
+          if(aud_el.dataset.key == e.keyCode) {
+            aud_el.currentTime = 0;
+            aud_el.play();
+          }
+        });
+          setTimeout(function() {element.classList.toggle("playing");},200);
+      }
+    });
+  }
 </script>
 
 
