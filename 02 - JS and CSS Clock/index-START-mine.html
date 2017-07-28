@@ -63,16 +63,24 @@
       position: absolute;
       top:50%;
       transform-origin: 100%;
-      transform: rotate(90deg);
       transition: all 0.05s;
       transition-timing-function: cubic-bezier(0, 2.94, 0.58, 1);
     }
+
 
   </style>
 
   <script>
 
 
+    setInterval(updateClock, 1000);
+    function updateClock() {
+      var date = new Date();
+      //console.log(date.getMinutes());
+      document.querySelector(".second-hand").style.transform = `rotate(${(date.getSeconds()*6)+90}deg)`;
+      document.querySelector(".min-hand").style.transform = `rotate(${(date.getMinutes()*6)+90}deg)`;
+      document.querySelector(".hour-hand").style.transform = `rotate(${(date.getHours()*30)+90}deg)`;
+    }
   </script>
 </body>
 </html>
